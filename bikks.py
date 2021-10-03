@@ -25,12 +25,12 @@ class Student:
         Contact = StringVar()
         Email = StringVar()
 #======================= functions ===========================================
-        def iExit():
-            iExit=tkinter.messagebox.askyesno("student management system","confirm if you want to exit")
+        def exit():
+            exit=tkinter.messagebox.askyesno("student management system","confirm if you want to exit")
             if iExit >0:
                 root.destroy()
                 return
-        def clearData():
+        def clear():
             self.e1.delete(0,END)
             self.e2.delete(0, END)
             self.e3.delete(0, END)
@@ -40,13 +40,13 @@ class Student:
             self.e7.delete(0, END)
             self.e8.delete(0, END)
 
-        def addData():
+        def add():
             if(len(StdID.get())!=0):
                 Final_Data.addStdRec(StdID.get(), Firstname.get(), Lastname.get(), Address.get(), Age.get(), City.get(), Contact.get(), Email.get())
                 student_list.delete(0,END)
                 student_list.insert(END,(StdID.get() , Firstname.get(), Lastname.get() ,Address.get() , Age.get(), City.get(), Contact.get(), Email.get()))
 
-        def displayData():
+        def display():
             student_list.delete(0,END)
             for row in Final_Data.viewData():
                 student_list.insert(END,row,str(""))
@@ -72,12 +72,12 @@ class Student:
             self.e7.insert(END, sd[7])
             self.e8.delete(0, END)
             self.e8.insert(END, sd[8])
-        def deleteData():
+        def delete():
             if (len(StdID.get()) != 0):
                 Final_Data.deleteRec(sd[0])
 
-                clearData()
-                displayData()
+                clear()
+                display()
 
         def search():
             student_list.delete(0,END)
@@ -178,16 +178,16 @@ class Student:
 
 
 #====================================== creating the buttons ========================
-        self.Add_button = Button(Button_frame, text="Add Data", font=("times", "20", "bold"),height=1,width=10,bd=4, command=addData)
+        self.Add_button = Button(Button_frame, text="Add Data", font=("times", "20", "bold"),height=1,width=10,bd=4, command=add)
         self.Add_button.grid(row=0,column=0)
 
-        self.display_button = Button(Button_frame, text="display", font=("times", "20", "bold"), height=1, width=10, bd=4, command=displayData)
+        self.display_button = Button(Button_frame, text="display", font=("times", "20", "bold"), height=1, width=10, bd=4, command=display)
         self.display_button.grid(row=0, column=1)
 
-        self.clear_button = Button(Button_frame, text="clear", font=("times", "20", "bold"), height=1, width=10, bd=4, command=clearData)
+        self.clear_button = Button(Button_frame, text="clear", font=("times", "20", "bold"), height=1, width=10, bd=4, command=clear)
         self.clear_button.grid(row=0, column=2)
 
-        self.delete_button = Button(Button_frame, text="Delete", font=("times", "20", "bold"), height=1, width=10, bd=4,command=deleteData)
+        self.delete_button = Button(Button_frame, text="Delete", font=("times", "20", "bold"), height=1, width=10, bd=4,command=delete)
         self.delete_button.grid(row=0, column=3)
 
         self.update_button = Button(Button_frame, text="Update", font=("times", "20", "bold"), height=1, width=10, bd=4, command=update)
